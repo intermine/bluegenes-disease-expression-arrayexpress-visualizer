@@ -21,4 +21,18 @@ describe('query', () => {
 			expect(firstVal).toHaveProperty('objectId');
 		});
 	});
+
+	test('should throw error when data corresponding to organism is not found', () => {
+		const dataWithInvalidGeneId = Object.assign({}, mockData, {
+			gene: 100002 // some wrong gene
+		});
+
+		const queryRes = queryExpData(
+			dataWithInvalidGeneId.gene,
+			dataWithInvalidGeneId.serviceUrl,
+			imjs
+		);
+
+		return expect(queryRes).rejects.toBe('No data found!');
+	});
 });
