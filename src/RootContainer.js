@@ -1,7 +1,18 @@
 import React from 'react';
 import queryData from './queryData';
+import getChartData from './chartData';
+import ExpressionChart from './chart';
 
 class RootContainer extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			chartData: null,
+			loading: true,
+			error: false
+		};
+	}
+
 	componentDidMount() {
 		const {
 			entity: { value },
@@ -11,7 +22,7 @@ class RootContainer extends React.Component {
 			.then(res => {
 				const { atlasExpression } = res;
 				this.setState({
-					chartData: atlasExpression,
+					chartData: getChartData(atlasExpression),
 					loading: false
 				});
 			})
@@ -21,7 +32,11 @@ class RootContainer extends React.Component {
 	render() {
 		return (
 			<div className="rootContainer">
-				<h1>Your Data Viz Here</h1>
+				{this.state.chartData && !this.state.error ? (
+					<ExpressionChart chartData={this.state.chartData} />
+				) : (
+					<span className="error">{this.state.error}</span>
+				)}
 			</div>
 		);
 	}
