@@ -17,8 +17,13 @@ class RootContainer extends React.Component {
 	componentDidMount() {
 		const {
 			entity: { value },
-			serviceUrl
+			serviceUrl,
+			testing
 		} = this.props;
+
+		// no need to fetch and show anything if in testing mode
+		if (testing) return;
+
 		queryData(value, serviceUrl)
 			.then(res => {
 				const { atlasExpression } = res;
