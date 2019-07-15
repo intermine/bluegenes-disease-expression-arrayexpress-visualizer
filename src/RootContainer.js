@@ -2,6 +2,7 @@ import React from 'react';
 import queryData from './queryData';
 import getChartData from './chartData';
 import ExpressionChart from './chart';
+import Loading from './loading';
 
 class RootContainer extends React.Component {
 	constructor(props) {
@@ -30,6 +31,13 @@ class RootContainer extends React.Component {
 	}
 
 	render() {
+		if (this.state.loading)
+			return (
+				<div className="rootContainer">
+					<Loading />
+				</div>
+			);
+
 		return (
 			<div className="rootContainer">
 				{this.state.chartData && !this.state.error ? (
