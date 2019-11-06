@@ -1,7 +1,7 @@
 #  BlueGenes Disease Expression ArrayExpress Visualizer
 
 BlueGenes Disease Expression ArrayExpress Visualizer is a tool made for [BlueGenes](http://bluegenes.apps.intermine.org) following BlueGenes Tool API.
-Add more description of your tool here! :)
+Visualize gene expression by disease using ArrayExpress data. Easily see which expressions are up- or down-regulated.
 
 ## Licence
 
